@@ -106,22 +106,19 @@ def files_save(_save_files, save_path, save_name, extensions=[]):
         ws = wb.add_sheet(sheet_name)
         ws.write(0, 0, unicode('文件名'))
         ws.write(0, 1, unicode('地址'))
-        ws.write(0, 2, unicode('类型'))
-        ws.write(0, 3, unicode('大小'))
+        ws.write(0, 2, unicode('大小'))
         i = 1
         for c_file in _save_files:
             if can_read_info(c_file) == 1 and isinstance(c_file, File) and not ('/.' in c_file.path):
                 name = c_file.name
                 path = c_file.path
-                type_name = c_file.get_type()
                 size = c_file.get_size()
 
                 extension_name = '%s' % c_file.get_extension()
                 if sheet_name == extension_name:
                     ws.write(i, 0, unicode("%s" % name))
                     ws.write(i, 1, unicode("%s" % path))
-                    ws.write(i, 2, unicode("%s" % type_name))
-                    ws.write(i, 3, size * 1.0)
+                    ws.write(i, 2, size * 1.0)
                     i += 1
     wb.save(save_path + '/' + save_name + '.xls')
 
